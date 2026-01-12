@@ -245,7 +245,7 @@ body::after{
     <h2>About Me</h2>
     <p>Hello! I am Denish, a passionate developer focused on web apps, APIs, and creative animations.</p>
 
-    <h2>hobby</h2>
+    <h2>Hobby</h2>
     <ul>
       <li>playing video games </li>
       <li>sleepin'</li>
@@ -294,11 +294,13 @@ volDown.onclick=()=>{video.volume=Math.max(0,video.volume-0.1);updateIcon();}
 volUp.onclick=()=>{video.volume=Math.min(1,video.volume+0.1);updateIcon();}
 icon.onclick=()=>{video.volume=video.volume>0?0:0.5;updateIcon();}
 
-/* REAL VIEWS */
-const views=document.getElementById("views");
-fetch("https://api.countapi.xyz/hit/azel-profile/views")
-.then(r=>r.json())
-.then(d=>views.innerText=d.value);
+/* REAL VIEWS - LOCAL STORAGE COUNTER */
+const views = document.getElementById("views");
+let count = localStorage.getItem("visitCount");
+if (!count) count = 0;
+count = parseInt(count) + 1;
+localStorage.setItem("visitCount", count);
+views.innerText = count;
 
 /* USERNAME */
 const u=new URLSearchParams(location.search).get("user");
@@ -353,4 +355,4 @@ document.getElementById("toPortfolio").onclick = () => {
 </script>
 
 </body>
-  </html>
+</html>
